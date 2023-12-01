@@ -1,6 +1,6 @@
-train: ../train
-val: ../valid
-test: ../test
+train: /home/hackbrian/gitProyects/ArtificialVision/dataset/mergeData/train
+val: /home/hackbrian/gitProyects/ArtificialVision/dataset/mergeData/valid
+test: /home/hackbrian/gitProyects/ArtificialVision/dataset/mergeData/test
 
 nc: 3
 names: ['paper', 'rock', 'scissors']
