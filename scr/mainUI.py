@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import cv2
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import QTimer
-
+from ultralytics import YOLO
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -163,21 +163,35 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
         self.cap = cv2.VideoCapture("http://192.168.100.31:4747/video")
-
+        self.cap.set(cv2.CAP_PROP_FPS, 15)
+        self.model = YOLO("models/modelV1.pt")
         self.timer = QTimer(MainWindow)
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(30)  # Establece el intervalo de tiempo en milisegundos
 
     def update_frame(self):
         ret, frame = self.cap.read()
+        factor_escala = 0.3
+
+        #   Redimensionar la imagen manteniendo la relación de aspecto
+        frame = cv2.resize(frame, None, fx=factor_escala, fy=factor_escala)
+        #frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) 
         if ret:
-            height, width, channel = frame.shape
+
+            resultados = self.model.predict(frame, imgsz = 640, conf = 0.83,show_labels=True)
+
+            # Mostramos resultados
+            #print(resultados.probs)
+            anotaciones = resultados[0].plot()
+            anotaciones=cv2.cvtColor(anotaciones,cv2.COLOR_BGR2RGB) 
+            height, width, channel = anotaciones.shape
             bytes_per_line = 3 * width
-            q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format_RGB888)
+            q_image = QImage(anotaciones.data, width, height, bytes_per_line, QImage.Format_RGB888)
             pixmap = QPixmap.fromImage(q_image)
             scene = QtWidgets.QGraphicsScene()
             scene.addPixmap(pixmap)
-            self.graphicsView.setScene(scene)
+            #self.graphicsView.setScene(scene)
+            self.graphicsView_2.setScene(scene)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
