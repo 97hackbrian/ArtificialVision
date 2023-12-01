@@ -199,8 +199,16 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="text">
           <string>Continue</string>
@@ -212,11 +220,18 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>40</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <italic>true</italic>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
+         </property>
          <property name="text">
-          <string>Reboot</string>
+          <string>Reset</string>
          </property>
         </widget>
        </item>
@@ -225,8 +240,17 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>30</height>
+           <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+           <stylestrategy>PreferAntialias</stylestrategy>
+          </font>
          </property>
          <property name="text">
           <string>Stop</string>
