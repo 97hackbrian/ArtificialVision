@@ -1,0 +1,8 @@
+train: ../train
+val: ../valid
+test: ../test
+
+nc: 3
+names: ['paper', 'rock', 'scissors']
+
+
