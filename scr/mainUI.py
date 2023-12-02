@@ -158,12 +158,13 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuGAME.menuAction())
         self.menubar.addAction(self.menuSETIINGS.menuAction())
         self.menubar.addAction(self.menuabout.menuAction())
-
+        self.win=""
+        self.option=""
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
-        self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
-        #self.cap = cv2.VideoCapture(0)
+        #self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
+        self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FPS, 15)
         self.model = YOLO("models/modelV2.pt")
         self.timer = QTimer(MainWindow)
@@ -187,12 +188,27 @@ class Ui_MainWindow(object):
                 boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
                 
                 for box in boxes:                                          # iterate boxes
-                    r = box.xyxy[0].astype(int)                            # get corner points as int
-                    print(result.names[int(box.cls[0])])                                               # print boxes
+                    r = box.xyxy[0].astype(int)
+                    self.option=result.names[int(box.cls[0])]
+                    print("Gamer: ",self.option)                                               # print boxes
                     #cv2.rectangle(img, r[:2], r[2:], (255, 255, 255), 2)   # draw boxes on img
-                
+            if(self.option=="paper"):
+                self.win="scissors"
+                dir="scr/designs/img/tijeras.png"
+            elif(self.option=="rock"):
+                self.win="paper"
+                dir="scr/designs/img/papel.png"
+            elif(self.option=="scissors"):
+                self.win="rock"
+                dir="scr/designs/img/piedra.png"
+            else:
+                self.win="none"
+                dir="scr/designs/img/lagarto.png"
+            print("IA: ",self.win)   
             anotaciones = resultados[0].plot()
             anotaciones=cv2.cvtColor(anotaciones,cv2.COLOR_BGR2RGB) 
+
+
             height, width, channel = anotaciones.shape
             bytes_per_line = 3 * width
             q_image = QImage(anotaciones.data, width, height, bytes_per_line, QImage.Format_RGB888)
@@ -201,6 +217,35 @@ class Ui_MainWindow(object):
             scene.addPixmap(pixmap)
             #self.graphicsView.setScene(scene)
             self.graphicsView_2.setScene(scene)
+
+
+
+
+            anotaciones=cv2.imread(dir) 
+
+
+            height, width, channel = anotaciones.shape
+            bytes_per_line = 3 * width
+            q_image = QImage(anotaciones.data, width, height, bytes_per_line, QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(q_image)
+            scene = QtWidgets.QGraphicsScene()
+            scene.addPixmap(pixmap)
+            #self.graphicsView.setScene(scene)
+            self.graphicsView_5.setScene(scene)
+
+            anotaciones=cv2.imread("scr/designs/img/vs.png") 
+
+
+            height, width, channel = anotaciones.shape
+            bytes_per_line = 3 * width
+            q_image = QImage(anotaciones.data, width, height, bytes_per_line, QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(q_image)
+            scene = QtWidgets.QGraphicsScene()
+            scene.addPixmap(pixmap)
+            #self.graphicsView.setScene(scene)
+            self.graphicsView.setScene(scene)
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
