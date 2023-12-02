@@ -162,7 +162,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
-        self.cap = cv2.VideoCapture("http://192.168.100.31:4747/video")
+        self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
         #self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FPS, 15)
         self.model = YOLO("models/modelV2.pt")
@@ -179,12 +179,18 @@ class Ui_MainWindow(object):
         #frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) 
         if ret:
 
-            resultados = self.model.predict(frame, imgsz = 640, conf = 0.80,show_labels=True)
+            resultados = self.model.predict(frame, imgsz = 640, conf = 0.75,show_labels=True)
+            #print(resultados[0])
 
-            # Mostramos resultados
-            names=[]
-            nombre_objeto = self.model.names()
-            print(nombre_objeto)
+            # run prediction on img
+            for result in resultados:                                         # iterate results
+                boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
+                
+                for box in boxes:                                          # iterate boxes
+                    r = box.xyxy[0].astype(int)                            # get corner points as int
+                    print(result.names[int(box.cls[0])])                                               # print boxes
+                    #cv2.rectangle(img, r[:2], r[2:], (255, 255, 255), 2)   # draw boxes on img
+                
             anotaciones = resultados[0].plot()
             anotaciones=cv2.cvtColor(anotaciones,cv2.COLOR_BGR2RGB) 
             height, width, channel = anotaciones.shape
