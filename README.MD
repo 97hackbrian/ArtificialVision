@@ -11,7 +11,7 @@ Este repositorio contiene el código necesario para ejecutar y evaluar el Examen
 ## Instrucciones de Instalación
 
 ```bash
-git clone https://github.com/97hackbrian/ArtificialVision/
+git clone https://github.com/97hackbrian/ArtificialVision.git
 cd ArtificialVision
 git switch LastExam
 
