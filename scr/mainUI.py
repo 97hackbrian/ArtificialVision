@@ -163,8 +163,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
-        self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
-        #self.cap = cv2.VideoCapture(0)
+        #self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
+        self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FPS, 15)
         self.model = YOLO("models/modelV2.pt")
         self.timer = QTimer(MainWindow)
