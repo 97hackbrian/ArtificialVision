@@ -164,7 +164,7 @@ class Ui_MainWindow(object):
         
         self.cap = cv2.VideoCapture("http://192.168.100.31:4747/video")
         self.cap.set(cv2.CAP_PROP_FPS, 15)
-        self.model = YOLO("models/modelV1.pt")
+        self.model = YOLO("models/modelV2.pt")
         self.timer = QTimer(MainWindow)
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(30)  # Establece el intervalo de tiempo en milisegundos
@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
         #frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) 
         if ret:
 
-            resultados = self.model.predict(frame, imgsz = 640, conf = 0.83,show_labels=True)
+            resultados = self.model.predict(frame, imgsz = 640, conf = 0.80,show_labels=True)
 
             # Mostramos resultados
             #print(resultados.probs)
