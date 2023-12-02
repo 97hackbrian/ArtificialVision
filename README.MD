@@ -1,4 +1,7 @@
 # ArtificialVision EXAMEN = RAMA "LastExam"
+Funciona:
+![App Screenshot](scr/result.png)
+
 
 Este repositorio contiene el código necesario para ejecutar y evaluar el Examen Final de Visión Artificial. Sigue los pasos a continuación para instalar y ejecutar el modelo.
 

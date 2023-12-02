@@ -163,8 +163,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
-        #self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture("http://192.168.100.32:4747/video")
+        #self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FPS, 15)
         self.model = YOLO("models/modelV2.pt")
         self.timer = QTimer(MainWindow)
@@ -185,8 +185,9 @@ class Ui_MainWindow(object):
 
             # run prediction on img
             for result in resultados:                                         # iterate results
-                boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
-                
+                boxes = result.boxes.cpu().numpy()# get boxes on cpu in numpy
+                self.option="none"                         
+                dir="scr/designs/img/lagarto.png"
                 for box in boxes:                                          # iterate boxes
                     r = box.xyxy[0].astype(int)
                     self.option=result.names[int(box.cls[0])]
