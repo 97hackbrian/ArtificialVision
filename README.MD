@@ -32,7 +32,10 @@ o
 ```
 
 ## Resultados del modelo
-Para poder ver los resultados del modelo puede verlos en el notebook 
-```bash
- /scr/main.ipynb
-```
+Para poder ver los resultados del modelo y el entramiento puede verlos en el notebook que esta en:
+
+- [Notebook](/scr/main.ipynb)
+
+También puede revisar los resultados en formato PDF:
+
+- [PDF](/scr/main.pdf)
