@@ -11,8 +11,10 @@ Este repositorio contiene el código necesario para ejecutar y evaluar el Examen
 ## Instrucciones de Instalación
 
 ```bash
-git clone https://github.com/97hackbrian/ArtificialVision/tree/LastExam
-cd LastExam
+git clone https://github.com/97hackbrian/ArtificialVision/
+cd ArtificialVision
+git switch LastExam
+
 conda env create -f environment.yml
 conda activate exVision
 ```
