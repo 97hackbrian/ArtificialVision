@@ -163,6 +163,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
         self.cap = cv2.VideoCapture("http://192.168.100.31:4747/video")
+        #self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FPS, 15)
         self.model = YOLO("models/modelV2.pt")
         self.timer = QTimer(MainWindow)
@@ -181,7 +182,9 @@ class Ui_MainWindow(object):
             resultados = self.model.predict(frame, imgsz = 640, conf = 0.80,show_labels=True)
 
             # Mostramos resultados
-            #print(resultados.probs)
+            names=[]
+            nombre_objeto = self.model.names()
+            print(nombre_objeto)
             anotaciones = resultados[0].plot()
             anotaciones=cv2.cvtColor(anotaciones,cv2.COLOR_BGR2RGB) 
             height, width, channel = anotaciones.shape
