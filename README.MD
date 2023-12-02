@@ -39,3 +39,8 @@ Para poder ver los resultados del modelo y el entramiento puede verlos en el not
 También puede revisar los resultados en formato PDF:
 
 - [PDF](/scr/main.pdf)
+
+
+![App Screenshot](dataset/runs/detect/train2/val_batch0_pred.jpg)
+![App Screenshot](dataset/runs/detect/train2/val_batch1_pred.jpg)
+![App Screenshot](dataset/runs/detect/train2/F1_curve.png)
