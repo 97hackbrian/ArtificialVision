@@ -65,7 +65,7 @@ tornado
 traitlets
 typing_extensions
 tzdata==2023.3
-urllib3==2.0.4
+urllib3==2.6.3
 wcwidth
 webencodings==0.5.1
 
