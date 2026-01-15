@@ -55,7 +55,7 @@ pyrsistent
 python-dateutil
 pytz==2023.3.post1
 pyzmq
-requests==2.31.0
+requests==2.32.4
 scipy==1.11.2
 six
 soupsieve
