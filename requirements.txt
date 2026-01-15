@@ -16,7 +16,7 @@ entrypoints
 executing
 fastjsonschema
 fonttools==4.42.0
-idna==3.4
+idna==3.7
 ipykernel
 ipython
 jedi
