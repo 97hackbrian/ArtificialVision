@@ -43,7 +43,7 @@ pandocfilters
 parso
 pexpect
 pickleshare
-Pillow==10.0.0
+Pillow==10.3.0
 platformdirs
 prompt-toolkit
 psutil
